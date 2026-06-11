@@ -7,10 +7,12 @@ class Estudiante(models.Model):
     apellido = models.CharField(max_length=30)
     cedula = models.CharField(max_length=30, unique=True)
     edad = models.IntegerField()
+    anio_nacimiento = models.IntegerField(default=2000)
 
-# str representacion de los objetos
-    def __str__(self):
-        return "%s - %s - %s - edad: %d" % (self.nombre, 
-                self.apellido,
-                self.cedula,
-                self.edad)
+    def _str_(self):
+        return f" Nombre: {self.nombre} - Apellido: {self.apellido} - CI: {self.cedula} - Edad: {self.edad} - Año de nacimiento: {self.obtener_anio_nacimiento()}"
+    
+    def obtener_anio_nacimiento(self):
+        anio_actual = datetime.now().year
+        valor = anio_actual = 2026
+        return valor - self.edad
